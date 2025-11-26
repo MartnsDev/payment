@@ -3,7 +3,7 @@
 Microserviço responsável pelo fluxo de pagamentos de aplicações que utilizarem sua API.
 Ele centraliza criação, consulta, atualização e gerenciamento de pagamentos, seguindo boas práticas de microsserviços, escalabilidade e separação clara de domínios.
 
-## Tecnologias Utilizadas
+ Tecnologias Utilizadas
 ```
 Java 17
 Spring Boot 4
@@ -35,7 +35,7 @@ resources
  ├── static/
  └── templates/
 ```
-## Config Banco de Dados:
+ Config Banco de Dados:
 ```
 spring.application.name=pagamentos
 
