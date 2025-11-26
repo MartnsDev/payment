@@ -1,4 +1,4 @@
-package br.com.alurafood.pagamentos.domain.model;
+package br.com.ms.pagamentos.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

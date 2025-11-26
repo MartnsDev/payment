@@ -1,6 +1,6 @@
-package br.com.alurafood.pagamentos.api.dto;
+package br.com.ms.pagamentos.api.dto;
 
-import br.com.alurafood.pagamentos.domain.model.Status;
+import br.com.ms.pagamentos.domain.model.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

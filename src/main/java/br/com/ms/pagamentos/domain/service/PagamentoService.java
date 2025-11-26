@@ -1,9 +1,9 @@
-package br.com.alurafood.pagamentos.domain.service;
+package br.com.ms.pagamentos.domain.service;
 
-import br.com.alurafood.pagamentos.api.dto.PagamentoDTO;
-import br.com.alurafood.pagamentos.domain.model.Pagamento;
-import br.com.alurafood.pagamentos.domain.model.Status;
-import br.com.alurafood.pagamentos.domain.repository.PagamentoRepository;
+import br.com.ms.pagamentos.api.dto.PagamentoDTO;
+import br.com.ms.pagamentos.domain.model.Pagamento;
+import br.com.ms.pagamentos.domain.model.Status;
+import br.com.ms.pagamentos.domain.repository.PagamentoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;

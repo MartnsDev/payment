@@ -1,8 +1,8 @@
-package br.com.alurafood.pagamentos.api.controller;
+package br.com.ms.pagamentos.api.controller;
 
 
-import br.com.alurafood.pagamentos.api.dto.PagamentoDTO;
-import br.com.alurafood.pagamentos.domain.service.PagamentoService;
+import br.com.ms.pagamentos.api.dto.PagamentoDTO;
+import br.com.ms.pagamentos.domain.service.PagamentoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package br.com.alurafood.pagamentos.domain.model;
+package br.com.ms.pagamentos.domain.model;
 
 public enum Status {
     CRIADO,
