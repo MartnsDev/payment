@@ -28,8 +28,7 @@ public class Pagamento {
     @Column(nullable = false, length = 7)
     private String expiracao;
 
-    @Transient
-    private String codigoDeSeguranca;
+    private String codigo;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

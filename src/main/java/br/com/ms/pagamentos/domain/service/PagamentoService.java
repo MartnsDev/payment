@@ -4,10 +4,12 @@ import br.com.ms.pagamentos.api.dto.PagamentoDTO;
 import br.com.ms.pagamentos.domain.model.Pagamento;
 import br.com.ms.pagamentos.domain.model.Status;
 import br.com.ms.pagamentos.domain.repository.PagamentoRepository;
+import br.com.ms.pagamentos.infra.exception.ApiException;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,10 +33,15 @@ public class PagamentoService {
 
     public PagamentoDTO obterPorId(Long id) {
         Pagamento pagamento = pagamentoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Pagamento não encontrado: " + id));
+                .orElseThrow(() -> new ApiException(
+                        HttpStatus.NOT_FOUND,
+                        "Pagamento não encontrado: " + id,
+                        "/pagamentos/" + id
+                ));
 
         return modelMapper.map(pagamento, PagamentoDTO.class);
     }
+
 
     // criação em transação
     @Transactional
@@ -50,7 +57,10 @@ public class PagamentoService {
     @Transactional
     public PagamentoDTO atualizarPagamento(Long id, PagamentoDTO dto) {
         Pagamento existente = pagamentoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Pagamento não encontrado: " + id));
+                .orElseThrow(() -> new ApiException(
+                        HttpStatus.NOT_FOUND,
+                        "Pagamento não encontrado: " + id,
+                        "/pagamentos/" + id));
 
         // Mapeia propriedades do DTO para a entidade existente.
         // modelMapper.map(dto, existente) poderia sobrescrever id/status; aqui só mapeamos campo a campo de forma explícita
@@ -58,7 +68,7 @@ public class PagamentoService {
         existente.setNome(dto.getNome());
         existente.setNumero(dto.getNumero());
         existente.setExpiracao(dto.getExpiracao());
-        // codigoDeSeguranca não é persistido (está @Transient) — se vier no DTO, é só para validação no controller
+
         if (dto.getStatus() != null) {
             existente.setStatus(dto.getStatus());
         }
@@ -76,7 +86,10 @@ public class PagamentoService {
     @Transactional
     public void excluirPagamento(Long id) {
         if (!pagamentoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Pagamento não encontrado: " + id);
+            throw new ApiException(
+                    HttpStatus.NOT_FOUND,
+                    "Pagamento não encontrado: " + id,
+                    "/pagamento/" + id);
         }
         pagamentoRepository.deleteById(id);
     }
